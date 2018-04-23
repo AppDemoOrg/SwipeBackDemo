@@ -1,4 +1,4 @@
-package com.abt.library;
+package com.abt.swipback;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
