@@ -12,15 +12,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import com.abt.swipback.SwipBackConfig;
-import com.abt.swipback.SwipBackManager;
+import com.abt.swipback.SwipeBackConfig;
+import com.abt.swipback.SwipeBackManager;
 
 /**
  * @描述： @右滑自定义工具类
  * @作者：      @黄卫旗
  * @创建时间： @2018-04-23
  */
-public class SwipBackLayout extends FrameLayout {
+public class SwipeBackLayout extends FrameLayout {
     private static final String TAG = "SwipBackLayout";
 
     private static final int MIN_FLING_VELOCITY = 400;
@@ -54,8 +54,8 @@ public class SwipBackLayout extends FrameLayout {
     private boolean mCloseFlagForDetached;
     private boolean mEnableTouchEvent;
 
-    public SwipBackLayout(Context context, View contentView, View preContentView, Drawable preDecorViewDrawable,
-                          @NonNull OnInternalStateListener onInternalStateListener) {
+    public SwipeBackLayout(Context context, View contentView, View preContentView, Drawable preDecorViewDrawable,
+                           @NonNull OnInternalStateListener onInternalStateListener) {
         super(context);
         mContentView               = contentView;
         mPreContentView            = preContentView;
@@ -65,7 +65,7 @@ public class SwipBackLayout extends FrameLayout {
     }
 
     private void initConfig() {
-        final SwipBackConfig config = SwipBackManager.getSwipBackConfig();
+        final SwipeBackConfig config = SwipeBackManager.getSwipBackConfig();
         mScreenWidth               = getResources().getDisplayMetrics().widthPixels;
         final float density        = getResources().getDisplayMetrics().density;
         final float minVel         = MIN_FLING_VELOCITY * density;
@@ -167,10 +167,10 @@ public class SwipBackLayout extends FrameLayout {
     }
 
     private void addPreContentView() {
-        if (mPreContentView.getParent() != SwipBackLayout.this) {
+        if (mPreContentView.getParent() != SwipeBackLayout.this) {
             mPreContentView.setTag("notScreenOrientationChange");
             ((ViewGroup) mPreContentView.getParent()).removeView(mPreContentView);
-            SwipBackLayout.this.addView(mPreContentView, 0);
+            SwipeBackLayout.this.addView(mPreContentView, 0);
             mShadowView.setVisibility(VISIBLE);
         }
     }
@@ -290,7 +290,7 @@ public class SwipBackLayout extends FrameLayout {
                     mCheckPreContentView = true;
                     // 只需要检查一次上个Activity是不是变了
                     // Log.e("TAG","只需要检查一次上个Activity是不是变了");
-                    mOnInternalStateListener.onCheckPreActivity(SwipBackLayout.this);
+                    mOnInternalStateListener.onCheckPreActivity(SwipeBackLayout.this);
                 }
                 addPreContentView();
             }
@@ -423,6 +423,6 @@ public class SwipBackLayout extends FrameLayout {
 
         void onClose(Boolean finishActivity);
 
-        void onCheckPreActivity(SwipBackLayout layout);
+        void onCheckPreActivity(SwipeBackLayout layout);
     }
 }

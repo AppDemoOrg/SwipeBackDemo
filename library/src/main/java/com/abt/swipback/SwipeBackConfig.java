@@ -7,7 +7,7 @@ import android.support.annotation.FloatRange;
  * @作者：      @黄卫旗
  * @创建时间： @2018-04-23
  */
-public class SwipBackConfig {
+public class SwipeBackConfig {
 
     private boolean mEdgeOnly;
     private boolean mLock;
@@ -52,11 +52,11 @@ public class SwipBackConfig {
         return mRotateScreen;
     }
 
-    private SwipBackConfig() {
+    private SwipeBackConfig() {
 
     }
 
-    public SwipBackConfig(Builder builder) {
+    public SwipeBackConfig(Builder builder) {
         mEdgeOnly = builder.edgeOnly;
         mLock = builder.lock;
         mEdgePercent = builder.edgePercent;
@@ -84,8 +84,8 @@ public class SwipBackConfig {
         public Builder() {
         }
 
-        public SwipBackConfig create() {
-            return new SwipBackConfig(this);
+        public SwipeBackConfig create() {
+            return new SwipeBackConfig(this);
         }
 
         public Builder edgeOnly(boolean edgeOnly) {

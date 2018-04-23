@@ -9,7 +9,7 @@ import android.support.annotation.RequiresApi;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.abt.swipback.widget.SwipBackLayout;
+import com.abt.swipback.widget.SwipeBackLayout;
 import com.abt.swipback.widget.ViewUtil;
 
 /**
@@ -17,26 +17,26 @@ import com.abt.swipback.widget.ViewUtil;
  * @作者：      @黄卫旗
  * @创建时间： @2018-04-23
  */
-public class SwipBackManager {
-    private static final String TAG = "SwipBackManager";
+public class SwipeBackManager {
+    private static final String TAG = SwipeBackManager.class.getSimpleName();
 
-    private static SwipBackConfig sSwipBackConfig;
+    private static SwipeBackConfig sSwipeBackConfig;
     private static ActivityMgr sActivityManage;
 
-    public static final void initialize(Application application, SwipBackConfig config) {
-        if (null == sSwipBackConfig) {
-            sSwipBackConfig = config;
+    public static final void initialize(Application application, SwipeBackConfig config) {
+        if (null == sSwipeBackConfig) {
+            sSwipeBackConfig = config;
             sActivityManage = new ActivityMgr();
             application.registerActivityLifecycleCallbacks(sActivityManage);
         }
     }
 
-    private SwipBackManager() {
+    private SwipeBackManager() {
 
     }
 
-    public static final SwipBackConfig getSwipBackConfig() {
-        return sSwipBackConfig;
+    public static final SwipeBackConfig getSwipBackConfig() {
+        return sSwipeBackConfig;
     }
 
     /**
@@ -62,9 +62,9 @@ public class SwipBackManager {
             content.setBackground(preDecorViewDrawable);
         }
 
-        final SwipBackLayout layout = new SwipBackLayout(curActivity, contentView,
+        final SwipeBackLayout layout = new SwipeBackLayout(curActivity, contentView,
                 preContentView[0], preDecorViewDrawable,
-                new SwipBackLayout.OnInternalStateListener() {
+                new SwipeBackLayout.OnInternalStateListener() {
                     @Override
                     public void onSlide(float percent) {
 
@@ -99,7 +99,7 @@ public class SwipBackManager {
                     }
 
                     @Override
-                    public void onCheckPreActivity(SwipBackLayout slideBackLayout) {
+                    public void onCheckPreActivity(SwipeBackLayout slideBackLayout) {
                         Activity activity = sActivityManage.getPreActivity();
 
                     }
