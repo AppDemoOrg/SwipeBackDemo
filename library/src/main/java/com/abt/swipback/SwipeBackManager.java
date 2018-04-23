@@ -35,7 +35,7 @@ public class SwipeBackManager {
 
     }
 
-    public static final SwipeBackConfig getSwipBackConfig() {
+    public static final SwipeBackConfig getSwipeBackConfig() {
         return sSwipeBackConfig;
     }
 
@@ -67,7 +67,7 @@ public class SwipeBackManager {
                 new SwipeBackLayout.OnInternalStateListener() {
                     @Override
                     public void onSlide(float percent) {
-
+                        //sSwipeBackConfig.isLock();
                     }
 
                     @Override
@@ -77,7 +77,7 @@ public class SwipeBackManager {
 
                     @Override
                     public void onClose(Boolean finishActivity) {
-                        if (getSwipBackConfig() != null && getSwipBackConfig().isRotateScreen()) {
+                        if (getSwipeBackConfig() != null && getSwipeBackConfig().isRotateScreen()) {
                             if (finishActivity != null && finishActivity) {
                                 // remove了preContentView后布局会重新调整，这时候contentView回到原处，所以要设不可见
                                 contentView.setVisibility(View.INVISIBLE);

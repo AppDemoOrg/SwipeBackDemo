@@ -65,7 +65,7 @@ public class SwipeBackLayout extends FrameLayout {
     }
 
     private void initConfig() {
-        final SwipeBackConfig config = SwipeBackManager.getSwipBackConfig();
+        final SwipeBackConfig config = SwipeBackManager.getSwipeBackConfig();
         mScreenWidth               = getResources().getDisplayMetrics().widthPixels;
         final float density        = getResources().getDisplayMetrics().density;
         final float minVel         = MIN_FLING_VELOCITY * density;

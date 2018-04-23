@@ -66,7 +66,6 @@ public class SwipeBackConfig {
     }
 
     public static class Builder {
-
         private boolean edgeOnly = false;
         private boolean lock = false;
 
