@@ -8,6 +8,9 @@ import android.support.annotation.RequiresApi;
 
 import com.abt.swipeback.basic.SwipeBackActivity;
 
+/**
+ * Created by hwq on 2018/4/23.
+ */
 public class NextActivity extends SwipeBackActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)

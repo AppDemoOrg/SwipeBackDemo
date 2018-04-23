@@ -1,4 +1,4 @@
-package com.abt.swipeback;
+package com.abt.swipeback.basic;
 
 import android.app.Application;
 

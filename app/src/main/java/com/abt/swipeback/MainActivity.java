@@ -7,6 +7,9 @@ import android.view.View;
 
 import com.abt.swipeback.basic.SwipeBackActivity;
 
+/**
+ * Created by hwq on 2018/4/23.
+ */
 public class MainActivity extends SwipeBackActivity {
 
     /**
@@ -23,7 +26,7 @@ public class MainActivity extends SwipeBackActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-    
+
     public void toNextActivity(View view) {
         NextActivity.startActivity(MainActivity.this);
     }
