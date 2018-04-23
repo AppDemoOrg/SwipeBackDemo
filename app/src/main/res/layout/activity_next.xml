@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#111222"
+    android:background="#909090"
     tools:context="com.abt.swipeback.MainActivity">
 
     <TextView
