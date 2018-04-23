@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.view.View;
 
-import com.abt.swipeback.basic.SwipeBackActivity;
+import com.abt.swipebacklib.basic.SwipeBackActivity;
 
 /**
  * Created by hwq on 2018/4/23.
