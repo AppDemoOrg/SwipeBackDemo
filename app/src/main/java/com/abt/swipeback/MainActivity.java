@@ -16,6 +16,14 @@ public class MainActivity extends SwipeBackActivity {
         setContentView(R.layout.activity_main);
     }
 
+    /**
+     * 首页需要禁用
+     */
+    @Override
+    protected boolean enableSwipeBack() {
+        return false;
+    }
+
     public void toNextActivity(View view) {
         NextActivity.startActivity(MainActivity.this);
     }

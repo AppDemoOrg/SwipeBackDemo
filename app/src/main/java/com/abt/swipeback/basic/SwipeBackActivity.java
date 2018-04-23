@@ -13,7 +13,6 @@ import com.abt.swipback.SwipeBackManager;
  */
 public class SwipeBackActivity extends AppCompatActivity {
 
-
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,6 +28,5 @@ public class SwipeBackActivity extends AppCompatActivity {
     protected boolean enableSwipeBack() {
         return true;
     }
-
 
 }
