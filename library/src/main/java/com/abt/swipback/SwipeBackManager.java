@@ -44,7 +44,7 @@ public class SwipeBackManager {
      * @param curActivity
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static final void addSwipBackList(@NonNull final Activity curActivity) {
+    public static final void addSwipeBackList(@NonNull final Activity curActivity) {
         final ViewGroup decorView = ViewUtil.getDecorView(curActivity);
         final View contentView    = decorView.getChildAt(0);
         decorView.removeViewAt(0);

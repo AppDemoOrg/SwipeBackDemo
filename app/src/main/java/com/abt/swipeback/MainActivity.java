@@ -1,13 +1,22 @@
 package com.abt.swipeback;
 
-import android.support.v7.app.AppCompatActivity;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
+import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
+import com.abt.swipeback.basic.SwipeBackActivity;
 
+public class MainActivity extends SwipeBackActivity {
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    public void toNextActivity(View view) {
+        NextActivity.startActivity(MainActivity.this);
     }
 }
