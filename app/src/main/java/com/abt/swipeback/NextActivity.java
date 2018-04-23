@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.view.View;
 
 import com.abt.swipeback.basic.SwipeBackActivity;
 
@@ -23,5 +24,9 @@ public class NextActivity extends SwipeBackActivity {
     public static final void startActivity(Activity context) {
         Intent intent = new Intent(context, NextActivity.class);
         context.startActivity(intent);
+    }
+
+    public void toEndActivity(View view) {
+        NextActivity.this.finish();
     }
 }
