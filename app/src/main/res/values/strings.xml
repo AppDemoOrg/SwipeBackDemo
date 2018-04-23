@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SwipeBackDemo</string>
+    <string name="main">Main Activity</string>
+    <string name="next">Next Activity</string>
 </resources>

@@ -8,9 +8,9 @@
     tools:context="com.abt.swipeback.MainActivity">
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_width="240dp"
+        android:layout_height="68dp"
+        android:text="@string/main"
         android:onClick="toNextActivity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
