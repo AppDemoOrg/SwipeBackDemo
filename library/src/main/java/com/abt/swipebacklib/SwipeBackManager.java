@@ -1,4 +1,4 @@
-package com.abt.swipback;
+package com.abt.swipebacklib;
 
 import android.app.Activity;
 import android.app.Application;
@@ -9,8 +9,10 @@ import android.support.annotation.RequiresApi;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.abt.swipback.widget.SwipeBackLayout;
-import com.abt.swipback.widget.ViewUtil;
+import com.abt.swipebacklib.widget.SwipeBackLayout;
+import com.abt.swipebacklib.widget.ViewUtil;
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.Logger;
 
 /**
  * @描述：     @右滑删除
@@ -29,6 +31,8 @@ public class SwipeBackManager {
             sActivityManage = new ActivityMgr();
             application.registerActivityLifecycleCallbacks(sActivityManage);
         }
+
+        Logger.addLogAdapter(new AndroidLogAdapter());
     }
 
     private SwipeBackManager() {
@@ -67,7 +71,12 @@ public class SwipeBackManager {
                 new SwipeBackLayout.OnInternalStateListener() {
                     @Override
                     public void onSlide(float percent) {
-                        //sSwipeBackConfig.isLock();
+                        if (percent == 0.0 || percent == 1.0) {
+                            sSwipeBackConfig.setLock(false);
+                        } else {
+                            sSwipeBackConfig.setLock(true);
+                        }
+                        Logger.d("onSlide percent = "+percent);
                     }
 
                     @Override
@@ -101,7 +110,6 @@ public class SwipeBackManager {
                     @Override
                     public void onCheckPreActivity(SwipeBackLayout slideBackLayout) {
                         Activity activity = sActivityManage.getPreActivity();
-
                     }
                 });
         decorView.addView(layout);

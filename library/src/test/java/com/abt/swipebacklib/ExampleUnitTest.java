@@ -1,4 +1,4 @@
-package com.abt.swipback;
+package com.abt.swipebacklib;
 
 import org.junit.Test;
 

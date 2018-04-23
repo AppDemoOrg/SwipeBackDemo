@@ -1,4 +1,4 @@
-package com.abt.swipback;
+package com.abt.swipebacklib;
 
 import android.support.annotation.FloatRange;
 
@@ -50,6 +50,10 @@ public class SwipeBackConfig {
      */
     public boolean isRotateScreen() {
         return mRotateScreen;
+    }
+
+    public void setLock(boolean lock) {
+        mLock = lock;
     }
 
     private SwipeBackConfig() {

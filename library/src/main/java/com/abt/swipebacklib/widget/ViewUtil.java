@@ -1,4 +1,4 @@
-package com.abt.swipback.widget;
+package com.abt.swipebacklib.widget;
 
 import android.app.Activity;
 import android.graphics.drawable.Drawable;

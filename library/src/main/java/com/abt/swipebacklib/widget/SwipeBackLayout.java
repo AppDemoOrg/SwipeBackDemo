@@ -1,10 +1,12 @@
-package com.abt.swipback.widget;
+package com.abt.swipebacklib.widget;
 
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.annotation.FloatRange;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.view.ViewGroupCompat;
 import android.support.v4.widget.ViewDragHelper;
 import android.view.MotionEvent;
@@ -12,8 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import com.abt.swipback.SwipeBackConfig;
-import com.abt.swipback.SwipeBackManager;
+import com.abt.swipebacklib.SwipeBackConfig;
+import com.abt.swipebacklib.SwipeBackManager;
 
 /**
  * @描述： @右滑自定义工具类
@@ -107,12 +109,10 @@ public class SwipeBackLayout extends FrameLayout {
                 }
             });
         }
-
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
-
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 mDownX = event.getX();
@@ -136,7 +136,6 @@ public class SwipeBackLayout extends FrameLayout {
         } else {
             return mDragHelper.shouldInterceptTouchEvent(event);
         }
-
     }
 
     private boolean isEdgeRangeInside(float x) {
@@ -191,7 +190,6 @@ public class SwipeBackLayout extends FrameLayout {
         }
     }
 
-
     public void updatePreContentView(View contentView) {
         mPreContentView = contentView;
         mCacheDrawView.drawParallarView(mPreContentView);
@@ -233,6 +231,7 @@ public class SwipeBackLayout extends FrameLayout {
             }
         }
 
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
         @Override
         public void onViewDragStateChanged(int state) {
             switch (state) {
@@ -313,7 +312,6 @@ public class SwipeBackLayout extends FrameLayout {
         }
     }
 
-
     public void edgeOnly(boolean edgeOnly) {
         mEdgeOnly = edgeOnly;
     }
@@ -332,7 +330,7 @@ public class SwipeBackLayout extends FrameLayout {
 
     public void setSlideOutRangePercent(float slideOutRangePercent) {
         mSlideOutRangePercent = slideOutRangePercent;
-        mSlideOutRange         = mScreenWidth * mSlideOutRangePercent;
+        mSlideOutRange        = mScreenWidth * mSlideOutRangePercent;
     }
 
     public float getSlideOutRangePercent() {
@@ -352,12 +350,9 @@ public class SwipeBackLayout extends FrameLayout {
     public void onWindowFocusChanged(boolean hasWindowFocus) {
         super.onWindowFocusChanged(hasWindowFocus);
         // // Log.e("TAG", "onWindowFocusChanged(): " + this + " ; " + hasWindowFocus);
-
         if (hasWindowFocus) {
-
             mEnableTouchEvent = true;
-
-            //            Log.e("TAG", "SlideBackLayout-378行-onWindowFocusChanged(): " + hasWindowFocus);
+            // Log.e("TAG", "SlideBackLayout-378行-onWindowFocusChanged(): " + hasWindowFocus);
 
             // 当前页面
             if (!mIsFirstAttachToWindow) {
@@ -378,7 +373,6 @@ public class SwipeBackLayout extends FrameLayout {
                 }
             }
         }
-
     }
 
     @Override
@@ -413,7 +407,6 @@ public class SwipeBackLayout extends FrameLayout {
         layoutParams.width = mScreenWidth / 28;
         layoutParams.height = LayoutParams.MATCH_PARENT;
     }
-
 
     public interface OnInternalStateListener {
         void onSlide(@FloatRange(from = 0.0,
