@@ -49,6 +49,8 @@ public class SwipeBackManager {
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static final void addSwipeBackList(@NonNull final Activity curActivity) {
+        Logger.d("addSwipeBackList");
+        sSwipeBackConfig.setLock(true);
         final ViewGroup decorView = ViewUtil.getDecorView(curActivity);
         final View contentView    = decorView.getChildAt(0);
         decorView.removeViewAt(0);
@@ -71,21 +73,23 @@ public class SwipeBackManager {
                 new SwipeBackLayout.OnInternalStateListener() {
                     @Override
                     public void onSlide(float percent) {
-                        if (percent == 0.0 || percent == 1.0) {
+                        //sSwipeBackConfig.setLock(false);
+                        /*if (percent == 0.0 || percent == 1.0) {
                             sSwipeBackConfig.setLock(false);
                         } else {
                             sSwipeBackConfig.setLock(true);
-                        }
+                        }*/
                         Logger.d("onSlide percent = "+percent);
                     }
 
                     @Override
                     public void onOpen() {
-
+                        Logger.d("onOpen");
                     }
 
                     @Override
                     public void onClose(Boolean finishActivity) {
+                        Logger.d("onClose");
                         if (getSwipeBackConfig() != null && getSwipeBackConfig().isRotateScreen()) {
                             if (finishActivity != null && finishActivity) {
                                 // remove了preContentView后布局会重新调整，这时候contentView回到原处，所以要设不可见
@@ -110,9 +114,18 @@ public class SwipeBackManager {
                     @Override
                     public void onCheckPreActivity(SwipeBackLayout slideBackLayout) {
                         Activity activity = sActivityManage.getPreActivity();
+                        Logger.d("onCheckPreActivity");
                     }
                 });
+
         decorView.addView(layout);
+        Logger.d("addView layout");
+        content.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                layout.lock(false);
+            }
+        },250);
     }
 
 }
