@@ -8,4 +8,24 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!--activity窗口动画-->
+    <style name="ActivityAnimation" parent="@android:style/Animation">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
+        <!--<item name="android:activityOpenExitAnimation">@anim/slide_out_right</item>-->
+        <item name="android:activityCloseEnterAnimation">@anim/slide_in_right</item>
+        <!--<item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>-->
+    </style>
+
+    <!--无标题、无状态栏背景-->
+    <style name="AppTheme.NoBar">
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <!--<item name="android:windowIsTranslucent">false</item>-->
+    </style>
+
+    <style name="AppTheme.NoBar.Animation" parent="AppTheme.NoBar">
+        <item name="android:windowAnimationStyle">@style/ActivityAnimation</item>
+        <!--<item name="android:windowIsTranslucent">true</item>-->
+    </style>
+
 </resources>

@@ -125,7 +125,7 @@ public class SwipeBackManager {
             public void run() {
                 layout.lock(false);
             }
-        },250);
+        },300);
     }
 
 }

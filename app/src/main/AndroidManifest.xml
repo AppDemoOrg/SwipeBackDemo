@@ -11,7 +11,9 @@
         android:name=".OilApplication"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoBar"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,7 +21,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".NextActivity"/>
+        <activity android:name=".NextActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoBar.Animation" />
 
     </application>
 
