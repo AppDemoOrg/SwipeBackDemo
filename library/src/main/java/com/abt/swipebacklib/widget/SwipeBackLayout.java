@@ -16,6 +16,7 @@ import android.widget.FrameLayout;
 
 import com.abt.swipebacklib.SwipeBackConfig;
 import com.abt.swipebacklib.SwipeBackManager;
+import com.orhanobut.logger.Logger;
 
 /**
  * @描述： @右滑自定义工具类
@@ -23,7 +24,7 @@ import com.abt.swipebacklib.SwipeBackManager;
  * @创建时间： @2018-04-23
  */
 public class SwipeBackLayout extends FrameLayout {
-    private static final String TAG = "SwipBackLayout";
+    private static final String TAG = "SwipeBackLayout";
 
     private static final int MIN_FLING_VELOCITY = 400;
     private boolean mCheckPreContentView;
@@ -38,11 +39,9 @@ public class SwipeBackLayout extends FrameLayout {
 
     private boolean mEdgeOnly = false;
     private boolean mLock = false;
-    @FloatRange(from = 0.0,
-            to = 1.0)
+    @FloatRange(from = 0.0, to = 1.0)
     private float mSlideOutRangePercent = 0.4f;
-    @FloatRange(from = 0.0,
-            to = 1.0)
+    @FloatRange(from = 0.0, to = 1.0)
     private float mEdgeRangePercent = 0.1f;
     private float mSlideOutRange;
     private float mEdgeRange;
@@ -59,6 +58,7 @@ public class SwipeBackLayout extends FrameLayout {
     public SwipeBackLayout(Context context, View contentView, View preContentView, Drawable preDecorViewDrawable,
                            @NonNull OnInternalStateListener onInternalStateListener) {
         super(context);
+        Logger.d("SwipeBackLayout");
         mContentView               = contentView;
         mPreContentView            = preContentView;
         mPreDecorViewDrawable     = preDecorViewDrawable;
@@ -67,6 +67,7 @@ public class SwipeBackLayout extends FrameLayout {
     }
 
     private void initConfig() {
+        Logger.d("initConfig");
         final SwipeBackConfig config = SwipeBackManager.getSwipeBackConfig();
         mScreenWidth               = getResources().getDisplayMetrics().widthPixels;
         final float density        = getResources().getDisplayMetrics().density;
@@ -93,7 +94,7 @@ public class SwipeBackLayout extends FrameLayout {
         mLock                   = config.isLock();
         mRotateScreen          = config.isRotateScreen();
 
-        mSlideOutRangePercent = config.getSlideOutPercent();
+        mSlideOutRangePercent  = config.getSlideOutPercent();
         mEdgeRangePercent      = config.getEdgePercent();
 
         mSlideOutRange    = mScreenWidth * mSlideOutRangePercent;
@@ -113,6 +114,7 @@ public class SwipeBackLayout extends FrameLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
+        Logger.d("onInterceptTouchEvent");
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 mDownX = event.getX();
@@ -139,11 +141,13 @@ public class SwipeBackLayout extends FrameLayout {
     }
 
     private boolean isEdgeRangeInside(float x) {
+        Logger.d("isEdgeRangeInside");
         return x <= mEdgeRange;
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        Logger.d("onTouchEvent");
         if (mLock) {
             return super.onTouchEvent(event);
         }
@@ -166,6 +170,7 @@ public class SwipeBackLayout extends FrameLayout {
     }
 
     private void addPreContentView() {
+        Logger.d("addPreContentView");
         if (mPreContentView.getParent() != SwipeBackLayout.this) {
             mPreContentView.setTag("notScreenOrientationChange");
             ((ViewGroup) mPreContentView.getParent()).removeView(mPreContentView);
@@ -176,12 +181,14 @@ public class SwipeBackLayout extends FrameLayout {
 
     @Override
     public void computeScroll() {
+        Logger.d("computeScroll");
         if (mDragHelper.continueSettling(true)) {
             invalidate();
         }
     }
 
     public void isComingToFinish() {
+        Logger.d("isComingToFinish");
         if (mRotateScreen) {
             mCloseFlagForDetached = true;
             mCloseFlagForWindowFocus = false;
@@ -191,6 +198,7 @@ public class SwipeBackLayout extends FrameLayout {
     }
 
     public void updatePreContentView(View contentView) {
+        Logger.d("updatePreContentView");
         mPreContentView = contentView;
         mCacheDrawView.drawParallarView(mPreContentView);
     }
@@ -199,21 +207,25 @@ public class SwipeBackLayout extends FrameLayout {
 
         @Override
         public boolean tryCaptureView(View child, int pointerId) {
+            Logger.d("SlideLeftCallback   tryCaptureView");
             return child == mContentView;
         }
 
         @Override
         public int clampViewPositionHorizontal(View child, int left, int dx) {
+            Logger.d("SlideLeftCallback   clampViewPositionHorizontal");
             return Math.max(Math.min(mScreenWidth, left), 0);
         }
 
         @Override
         public int getViewHorizontalDragRange(View child) {
+            Logger.d("SlideLeftCallback   getViewHorizontalDragRange");
             return mScreenWidth;
         }
 
         @Override
         public void onViewReleased(View releasedChild, float xvel, float yvel) {
+            Logger.d("SlideLeftCallback   onViewReleased");
             if (releasedChild == mContentView) {
                 if (xvel > mSlideOutVelocity) {
                     mDragHelper.settleCapturedViewAt(mScreenWidth, 0);
@@ -234,6 +246,7 @@ public class SwipeBackLayout extends FrameLayout {
         @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
         @Override
         public void onViewDragStateChanged(int state) {
+            Logger.d("SlideLeftCallback   onViewDragStateChanged");
             switch (state) {
                 case ViewDragHelper.STATE_IDLE:
                     if (mContentView.getLeft() == 0) {
@@ -272,8 +285,10 @@ public class SwipeBackLayout extends FrameLayout {
             }
         }
 
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
         @Override
         public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
+            Logger.d("SlideLeftCallback   onViewPositionChanged");
             if (!mRotateScreen && mCacheDrawView.getVisibility() == INVISIBLE) {
                 mCacheDrawView.setBackground(mPreDecorViewDrawable);
                 mCacheDrawView.drawParallarView(mPreContentView);
@@ -314,46 +329,53 @@ public class SwipeBackLayout extends FrameLayout {
 
     public void edgeOnly(boolean edgeOnly) {
         mEdgeOnly = edgeOnly;
+        Logger.d("edgeOnly");
     }
 
     public boolean isEdgeOnly() {
+        Logger.d("isEdgeOnly");
         return mEdgeOnly;
     }
 
     public void lock(boolean lock) {
+        Logger.d("lock");
         mLock = lock;
     }
 
     public boolean isLock() {
+        Logger.d("isLock");
         return mLock;
     }
 
     public void setSlideOutRangePercent(float slideOutRangePercent) {
+        Logger.d("setSlideOutRangePercent");
         mSlideOutRangePercent = slideOutRangePercent;
         mSlideOutRange        = mScreenWidth * mSlideOutRangePercent;
     }
 
     public float getSlideOutRangePercent() {
+        Logger.d("getSlideOutRangePercent");
         return mSlideOutRangePercent;
     }
 
     public void setEdgeRangePercent(float edgeRangePercent) {
+        Logger.d("setEdgeRangePercent");
         mEdgeRangePercent = edgeRangePercent;
         mEdgeRange = mScreenWidth * mEdgeRangePercent;
     }
 
     public float getEdgeRangePercent() {
+        Logger.d("getEdgeRangePercent");
         return mEdgeRangePercent;
     }
 
     @Override
     public void onWindowFocusChanged(boolean hasWindowFocus) {
         super.onWindowFocusChanged(hasWindowFocus);
-        // // Log.e("TAG", "onWindowFocusChanged(): " + this + " ; " + hasWindowFocus);
+        Logger.d("onWindowFocusChanged(): " + this + " ; " + hasWindowFocus);
         if (hasWindowFocus) {
             mEnableTouchEvent = true;
             // Log.e("TAG", "SlideBackLayout-378行-onWindowFocusChanged(): " + hasWindowFocus);
-
             // 当前页面
             if (!mIsFirstAttachToWindow) {
                 mIsFirstAttachToWindow = true;
@@ -378,6 +400,7 @@ public class SwipeBackLayout extends FrameLayout {
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
+        Logger.d("onDetachedFromWindow");
         mEnableTouchEvent = false;
         // // Log.e("TAG", "SlideBackLayout-345行-onDetachedFromWindow(): " + this);
         if (mRotateScreen) {
@@ -401,6 +424,7 @@ public class SwipeBackLayout extends FrameLayout {
     @Override
     protected void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+        Logger.d("onConfigurationChanged");
         mScreenWidth = getResources().getDisplayMetrics().widthPixels;
         // Log.e("TAG", mTestName + ": SlideBackLayout-338行-onConfigurationChanged(): " + mScreenWidth);
         ViewGroup.LayoutParams layoutParams = mShadowView.getLayoutParams();
@@ -409,13 +433,9 @@ public class SwipeBackLayout extends FrameLayout {
     }
 
     public interface OnInternalStateListener {
-        void onSlide(@FloatRange(from = 0.0,
-                to = 1.0) float percent);
-
+        void onSlide(@FloatRange(from = 0.0, to = 1.0) float percent);
         void onOpen();
-
         void onClose(Boolean finishActivity);
-
         void onCheckPreActivity(SwipeBackLayout layout);
     }
 }
