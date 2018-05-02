@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#111222"
-    tools:context="com.abt.swipeback.activity.MainActivity">
+    tools:context="com.abt.swipeback.activity.HomeActivity">
 
     <Button
         android:layout_width="240dp"
         android:layout_height="68dp"
         android:text="@string/main"
-        android:onClick="toNextActivity"
+        android:onClick="toEndActivity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

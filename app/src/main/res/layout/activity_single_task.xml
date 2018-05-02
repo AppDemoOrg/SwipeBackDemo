@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#111222"
-    tools:context="com.abt.swipeback.activity.MainActivity">
+    tools:context="com.abt.swipeback.activity.HomeActivity">
 
     <Button
         android:layout_width="240dp"
