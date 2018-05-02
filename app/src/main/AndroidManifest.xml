@@ -11,7 +11,7 @@
         android:name=".OilApplication"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MainActivity"
+        <activity android:name=".activity.MainActivity"
             android:theme="@style/AppTheme.NoBar"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -21,7 +21,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".NextActivity"
+        <activity android:name=".activity.NextActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoBar.Animation" />
+
+        <activity android:name=".activity.SingleTaskActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoBar.Animation" />
 
