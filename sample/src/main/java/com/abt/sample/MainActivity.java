@@ -1,10 +1,22 @@
 package com.abt.sample;
 
-import android.support.v7.app.AppCompatActivity;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 
-public class MainActivity extends AppCompatActivity {
+import com.abt.swipebacklib.basic.SwipeBackActivity;
 
+public class MainActivity extends SwipeBackActivity {
+
+    /**
+     * 首页需要禁用
+     */
+    @Override
+    protected boolean enableSwipeBack() {
+        return false;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
