@@ -15,9 +15,9 @@ import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 
 /**
- * @描述：     @右滑删除
+ * @描述：      @右滑删除
  * @作者：      @黄卫旗
- * @创建时间： @2018-04-23
+ * @创建时间：  @2018-04-23
  */
 public class SwipeBackManager {
     private static final String TAG = SwipeBackManager.class.getSimpleName();
@@ -73,12 +73,6 @@ public class SwipeBackManager {
                 new SwipeBackLayout.OnInternalStateListener() {
                     @Override
                     public void onSlide(float percent) {
-                        //sSwipeBackConfig.setLock(false);
-                        /*if (percent == 0.0 || percent == 1.0) {
-                            sSwipeBackConfig.setLock(false);
-                        } else {
-                            sSwipeBackConfig.setLock(true);
-                        }*/
                         Logger.d("onSlide percent = "+percent);
                     }
 
@@ -119,13 +113,13 @@ public class SwipeBackManager {
                 });
 
         decorView.addView(layout);
-        Logger.d("addView layout");
         content.postDelayed(new Runnable() {
             @Override
             public void run() {
-                layout.lock(false);
+                layout.lock(false); /** 页面切换动画做完后（大概需要300毫秒）*/
             }
-        },300);
+        },300); /** 解锁页面左滑功能 */
+
     }
 
 }
