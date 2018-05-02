@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.abt.sample.MainActivity">
+    android:background="#111222"
+    tools:context="com.abt.sample.activity.LauncherActivity">
 
     <Button
         android:id="@+id/button"
@@ -13,8 +14,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="132dp"
-        android:onClick="toMainActivity"
-        android:text="@string/main"
+        android:onClick="toNextActivity"
+        android:text="@string/to_main"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

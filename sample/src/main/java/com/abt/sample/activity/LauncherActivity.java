@@ -1,12 +1,14 @@
-package com.abt.sample;
+package com.abt.sample.activity;
 
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.view.View;
 
+import com.abt.sample.R;
 import com.abt.swipebacklib.basic.SwipeBackActivity;
 
-public class MainActivity extends SwipeBackActivity {
+public class LauncherActivity extends SwipeBackActivity {
 
     /**
      * 首页需要禁用
@@ -20,6 +22,11 @@ public class MainActivity extends SwipeBackActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_launcher);
     }
+
+    public void toNextActivity(View view) {
+        NextActivity.startActivity(LauncherActivity.this);
+    }
+
 }

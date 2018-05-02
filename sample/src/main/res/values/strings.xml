@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">sample</string>
+    <string name="to_main">To Main Activity</string>
     <string name="main">Main Activity</string>
 </resources>
